@@ -610,6 +610,21 @@ a.view {
   margin-top: 20px;
   display: inline-block;
 }
+.vue{
+  padding: 6px 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #00aaf8;
+  border: 0;
+  font-size: 13px;
+  border-radius: 2px;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-top: 20px;
+  margin-left: 190px;
+  display: inline-block;
+}
 i.fa.fa-clock-o {
   font-size: 1.5em;
   color: #9a9a9a;

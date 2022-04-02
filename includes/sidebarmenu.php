@@ -1,3 +1,12 @@
+<?php
+$email = $_SESSION['alogin'];
+$sql = "SELECT `Updated_status` FROM `register` WHERE `email`='$email'";
+$query= $dbh -> prepare($sql);
+$query-> execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+// $stat=$results["status"];
+
+?>
 <div class="sidebar-menu">
 					<header class="logo1">
 						<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
@@ -9,7 +18,22 @@
 										
 									 <li id="menu-academico" ><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span> Tour Packages</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="createpackage.php">Create</a></li>
+											<?php 
+											if($query->rowCount() > 0)
+											{
+											foreach($results as $result)
+											{				
+											$stat= htmlentities($result->Updated_status);
+											if($stat==1)
+											{
+												echo("<li id='menu-academico-avaliacoes' ><a href='createpackage.php'>Create</a></li>");
+											}
+											else
+											{
+											}
+											}
+											}
+											?>
 											<li id="menu-academico-avaliacoes" ><a href="#">Manage</a></li>
 										  </ul>
 										</li>

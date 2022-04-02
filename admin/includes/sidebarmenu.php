@@ -14,6 +14,7 @@
 										  </ul>
 										</li>
 									<li id="menu-academico" ><a href="manage-traveller.php"><i class="fa fa-globe" aria-hidden="true"></i><span>Manage Travellers</span><div class="clearfix"></div></a></li>
+									<li id="menu-academico" ><a href="manage-company.php"><i class="fa fa-globe" aria-hidden="true"></i><span>Manage Tour Companies</span><div class="clearfix"></div></a></li>
 									<li><a href="manage-hotel.php"> <i class="fa fa-h-square" aria-hidden="true"></i>  <span>Manage Hotels</span><div class="clearfix"></div></a></li>
 									<li><a href="#"> <i class="fa fa-list" aria-hidden="true"></i>  <span>Manage Booking</span><div class="clearfix"></div></a></li>
 									 <li><a href="#"><i class="fa fa-table"></i>  <span>Manage Issues</span><div class="clearfix"></div></a></li>
