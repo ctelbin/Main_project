@@ -79,6 +79,14 @@ if(isset($_SESSION['alogin']))
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
+input[type="date"]
+{
+      width: 100%;
+      height: 53px;
+	  font-size: 18px;
+      font-family: "Gilroy_M";
+      padding: 16px 0px 16px 16px;
+	}
 		</style>				
 </head>
 <body>
@@ -106,7 +114,10 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{	?>
+{	
+	date_default_timezone_set("Asia/Kolkata");
+  $date = date("d/m/Y")." ".date("h:i:sa");
+	?>
 
 <form name="book" method="post">
 		<div class="selectroom_top">
@@ -118,20 +129,17 @@ foreach($results as $result)
 				<p class="dow">#PKG-<?php echo htmlentities($result->PackageId);?></p>
 				<p><b>Package Type :</b> <?php echo htmlentities($result->PackageType);?></p>
 				<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
-					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
+					<p><b>Features: </b> <?php echo htmlentities($result->PackageFetures);?></p>
 					<div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">From</label>
-				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+				<label class="inputLabel">Date of Travel</label>
+				<input type="date" id="adatepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
 			</div>
-			<div class="bnr-right">
-				<label class="inputLabel">To</label>
-				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="">
-			</div>
+			
 			</div>
 						<div class="clearfix"></div>
 				<div class="grand">
-					<p>Grand Total</p>
+					<p>Per Head</p>
 					<h3> <?php echo htmlentities($result->PackagePrice);?></h3>
 				</div>
 			</div>
@@ -151,11 +159,11 @@ foreach($results as $result)
 					<?php if($_SESSION['alogin'])
 					{?>
 						<li class="spe" align="center">
-					<button type="submit" name="submit2" class="btn-primary btn">Book</button>
+					<a href="thankyou.php"><button name="submit2" class="btn-primary btn">Book</button></a>
 						</li>
 						<?php } else {?>
 							<li class="sigi" align="center" style="margin-top: 1%">
-							<a href="#" data-toggle="modal" data-target="#myModal4" class="btn-primary btn" > Book</a></li>
+							<a href="thankyou.php" data-toggle="modal" data-target="myModal4" class="btn-primary btn" > Book</a></li>
 							<?php } ?>
 					<div class="clearfix"></div>
 				</ul>
@@ -187,3 +195,21 @@ else
 {
 	header("Location:regndlog.php");
 }?>
+<script type="text/javascript">
+
+const aDatePicker=document.querySelector("#adatepicker");
+
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if(dd<10){
+  dd='0'+dd
+} 
+if(mm<10){
+  mm='0'+mm
+} 
+today = yyyy+'-'+mm+'-'+dd;
+aDatePicker.setAttribute("min", today);
+</script>

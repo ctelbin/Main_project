@@ -5,20 +5,17 @@ include('includes/config.php');
 if(isset($_POST['submit50']))
 	{
 $email=$_POST['email'];
-$mobile=$_POST['mobile'];
 $newpassword=md5($_POST['newpassword']);
-	$sql ="SELECT EmailId FROM tblusers WHERE EmailId=:email and MobileNumber=:mobile";
+	$sql ="SELECT email FROM register WHERE email=:email";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
-$query-> bindParam(':mobile', $mobile, PDO::PARAM_STR);
 $query-> execute();
 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 if($query -> rowCount() > 0)
 {
-$con="update tblusers set Password=:newpassword where EmailId=:email and MobileNumber=:mobile";
+$con="update register set password=:newpassword where email=:email";
 $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':email', $email, PDO::PARAM_STR);
-$chngpwd1-> bindParam(':mobile', $mobile, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
 $msg="Your Password succesfully changed";
@@ -105,10 +102,6 @@ return true;
 			<b>Email id</b>  <input type="email" name="email" class="form-control" id="email" placeholder="Reg Email id" required="">
 	</p> 
 
-	<p style="width: 350px;">
-		
-			<b>Mobile No</b>  <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Reg Mobile no" required="">
-	</p> 
 
 <p style="width: 350px;">
 <b>New  Password</b>

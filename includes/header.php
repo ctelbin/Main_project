@@ -35,9 +35,13 @@
 <!--- /top-header ---->
 <!--- header ---->
 <div class="header">
+		<a href="index.php"><img src="images/logo.jpg" class="logo1" alt="" /></a>
 	<div class="containerrr">	
+	
 		<div class="lock fadeInDown animated" data-wow-delay=".5s"> 
+			
 			<li><a href="#">About</a></li>
+			<li><a href="tour-history.php">Booking Details</a></li>
 								<li><a href="#">Tour Packages</a></li>
 								<li><a href="logout.php">logout</a></li>
 								  

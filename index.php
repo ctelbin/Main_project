@@ -105,7 +105,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {	?>
-			<div class="rom-btm">
+			 <!-- <div class="rom-btm">
 				<div class="col-md-3 room-left wow fadeInLeft animated" data-wow-delay=".5s">
 					<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
 				</div>
@@ -120,21 +120,55 @@ foreach($results as $result)
 					<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
 				</div>
 				<div class="clearfix"></div>
-			</div>
+			</div>  -->
 			
-			<!-- <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+			 <!-- <div class="card" style="width: 18rem;">
+  <img class="img-responsive" src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
+    <h5 class="card-title"><?php echo htmlentities($result->PackageName);?></h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div> -->
-</div>
+    <a href="package-details.php" class="btn btn-primary">Go somewhere</a>
+  </div> 
+</div> -->
+
+ <div class="column">
+    <div class="cardss">
+      <img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive">
+      <p><?php echo htmlentities($result->PackageName);?></p>
+     <a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
+    </div>
+</div> 
+
+   <!-- <div class="crds">
+       
+        <div class="card">
+          <div class="card-img">
+            <img src="" alt="" />
+          </div>
+          <div class="content">
+            <div class="sec1">
+              <div class="title">1980s</div>
+              <div class="tag">Parties</div>
+            </div>
+            <div class="hr"></div>
+            <div class="sec2">
+              <div class="detail">
+                <div class="a">Rate:</div>
+                <div class="b">INR 3.25 Lakh</div>
+              </div>
+              <div class="detail">
+                <div class="a">Capacity:</div>
+                <div class="b">< 200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>  -->
 
 <?php }} ?>
 			
 		
-<div><a href="package-details.php" class="view vue">View More Packages</a></div>
+<!-- <div><a href="package-details.php" class="view">View More Packages</a></div> -->
 </div>
 			<div class="clearfix"></div>
 	</div>

@@ -56,7 +56,7 @@ include('includes/config.php');
                 <span class="text">Remember Me</span>
                 <span class="checkmark"></span>
                </label>
-              <label class="Forgot"><a href ="#">Forget Password ? </a> </label>
+              <label class="Forgot"><a href ="forgot-password.php">Forget Password ? </a> </label>
             </div>
             <input type="submit" value="Login" name="loginsubmit" class="btn solid" id="login-button" />
           </form>

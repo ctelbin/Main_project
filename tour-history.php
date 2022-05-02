@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-if(strlen($_SESSION['login'])==0)
+if(strlen($_SESSION['alogin'])==0)
 	{	
 header('location:index.php');
 }
@@ -10,7 +10,7 @@ else{
 if(isset($_REQUEST['bkid']))
 	{
 		$bid=intval($_GET['bkid']);
-$email=$_SESSION['login'];
+$email=$_SESSION['alogin'];
 	$sql ="SELECT FromDate FROM tblbooking WHERE UserEmail=:email and BookingId=:bid";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
@@ -57,7 +57,7 @@ $error="You can't cancel booking before 24 hours";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>TMS | Tourism Management System</title>
+<title>Travello | Tourism Management System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Tourism Management System In PHP" />
@@ -101,9 +101,9 @@ $error="You can't cancel booking before 24 hours";
 <!-- top-header -->
 <div class="top-header">
 <?php include('includes/header.php');?>
-<div class="banner-1 ">
+<div class="banner ">
 	<div class="container">
-		<h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">TMS-Tourism Management System</h1>
+		<h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">Travello -Tourism Management System</h1>
 	</div>
 </div>
 <!--- /banner-1 ---->
@@ -129,7 +129,7 @@ $error="You can't cancel booking before 24 hours";
 </tr>
 <?php 
 
-$uemail=$_SESSION['login'];;
+$uemail=$_SESSION['alogin'];;
 $sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
@@ -155,9 +155,9 @@ if($result->status==1)
 {
 echo "Confirmed";
 }
-if($result->status==2 and  $result->cancelby=='u')
+if($result->status==2 and  $result->cancelby=='$email')
 {
-echo "Canceled by you at " .$result->upddate;
+echo "Cancelled by you at " .$result->upddate;
 } 
 if($result->status==2 and $result->cancelby=='a')
 {

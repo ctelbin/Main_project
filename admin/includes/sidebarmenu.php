@@ -7,16 +7,15 @@
 									<ul id="menu" >
 										<li><a href="dashboard.php"><i class="fa fa-tachometer"></i> <span>Dashboard</span><div class="clearfix"></div></a></li>
 										
-									 <li id="menu-academico" ><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span> Tour Packages</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+									 <!-- <li id="menu-academico" ><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span> Tour Packages</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 										   <ul id="menu-academico-sub" >
 										   <li id="menu-academico-avaliacoes" ><a href="create-package.php">Create</a></li>
 											<li id="menu-academico-avaliacoes" ><a href="manage-packages.php">Manage</a></li>
 										  </ul>
-										</li>
+										</li> -->
 									<li id="menu-academico" ><a href="manage-traveller.php"><i class="fa fa-globe" aria-hidden="true"></i><span>Manage Travellers</span><div class="clearfix"></div></a></li>
 									<li id="menu-academico" ><a href="manage-company.php"><i class="fa fa-globe" aria-hidden="true"></i><span>Manage Tour Companies</span><div class="clearfix"></div></a></li>
 									<li><a href="manage-hotel.php"> <i class="fa fa-h-square" aria-hidden="true"></i>  <span>Manage Hotels</span><div class="clearfix"></div></a></li>
-									<li><a href="#"> <i class="fa fa-list" aria-hidden="true"></i>  <span>Manage Booking</span><div class="clearfix"></div></a></li>
 									 <li><a href="#"><i class="fa fa-table"></i>  <span>Manage Issues</span><div class="clearfix"></div></a></li>
 									<li><a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i>  <span>Manage Enquiries</span><div class="clearfix"></div></a></li>
 									<!-- <li><a href="manage-pages.php"><i class="fa fa-file-text-o" aria-hidden="true"></i>  <span>Manage Pages</span><div class="clearfix"></div></a></li> -->
