@@ -26,7 +26,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 											$stat= htmlentities($result->Updated_status);
 											if($stat==1)
 											{
-												echo("<li id='menu-academico-avaliacoes' ><a href='createpackage.php'>Create</a></li>");
+												echo("<li id='menu-academico-avaliacoes' ><a href='createpackage.php?uname=$email'>Create</a></li>");
 											}
 											else
 											{
@@ -34,7 +34,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 											}
 											}
 											?>
-											<li id="menu-academico-avaliacoes" ><a href="manage-packages.php">Manage</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="#">Manage</a></li>
 										  </ul>
 										</li>
 									 <li><a href="#"><i class="fa fa-table"></i>  <span>Manage Issues</span><div class="clearfix"></div></a></li>

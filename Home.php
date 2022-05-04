@@ -1,4 +1,8 @@
 <?php
+ session_start();
+ if (!isset($_SESSION['alogin'])) {
+header('Location: regndlog.php');
+}
 error_reporting(0);
 include('includes/config.php');
 ?>
@@ -29,7 +33,7 @@ include('includes/config.php');
 <!--//end-animate-->
 </head>
 <body>
-<?php include('includes/header1.php');?>
+<?php include('includes/header.php');?>
 <div class="banner">
 	<div class="container">
 		<h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> People don't take trips, trips take people </h1>
@@ -131,7 +135,7 @@ foreach($results as $result)
     <div class="cardss">
       <img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive">
       <p><?php echo htmlentities($result->PackageName);?></p>
-     <a href="regndlog.php" class="view">Details</a>
+     <a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
     </div>
 </div> 
 

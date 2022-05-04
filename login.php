@@ -20,11 +20,11 @@ if($query->rowCount() > 0)
 $_SESSION['alogin']=$_POST['email'];
 if($stat==1){
     
-echo "<script type='text/javascript'> document.location = 'companyDashboard.php'; </script>";
+echo "<script type='text/javascript'> document.location = 'companyDashboard.php?uname=$email'; </script>";
 }
 if($stat==2){
     
-echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+echo "<script type='text/javascript'> document.location = 'Home.php'; </script>";
 }
 if($stat==3){
     

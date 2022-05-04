@@ -7,22 +7,33 @@ if(isset($_POST['submit2']))
 $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['alogin'];
 $fromdate=$_POST['fromdate'];
-$todate=$_POST['todate'];
-$comment=$_POST['comment'];
+$city=$_POST['cities'];
+$package=$_POST['packages'];
+$adult=$_POST['adult'];
+$child=$_POST['child'];
+$total=$_POST['total'];
 $status=0;
-$sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:comment,:status)";
+echo $sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,city,type,adult,child,total,status) VALUES('$pid','$useremail','$fromdate','$city','$package','$adult','$child','$total','$status')";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
-$query->bindParam(':comment',$comment,PDO::PARAM_STR);
+$query->bindParam(':city',$city,PDO::PARAM_STR);
+$query->bindParam(':package',$package,PDO::PARAM_STR);
+$query->bindParam(':adult',$adult,PDO::PARAM_STR);
+$query->bindParam(':child',$child,PDO::PARAM_STR);
+$query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
+echo $query->execute();
+
 $lastInsertId = $dbh->lastInsertId();
+
+
 if($lastInsertId)
 {
 $msg="Booked Successfully";
+header("Location:payment.php?pkgid=$pid;&uname=$useremail");
 }
 else 
 {
@@ -86,7 +97,95 @@ input[type="date"]
 	  font-size: 18px;
       font-family: "Gilroy_M";
       padding: 16px 0px 16px 16px;
-	}
+}
+
+.mainwr
+{
+    margin-bottom: 50px;
+    margin-top: 35px;
+}
+
+.wrapper1 {
+    width: 100px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper1 span {
+    width: 100px;
+    text-align: center;
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrapper1 span.num {
+    font-size: 25px;
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+.wrapper2 {
+   
+    width: 100px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background: #FFF;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper2 span {
+    width: 100px;
+    text-align: center;
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrapper2 span.number {
+    font-size: 25px;
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+#result{
+    margin-top: 50px;
+   
+    font-size: 30px;
+    font-weight: bold;
+}
+.m{
+    margin-top: 60px;
+}
+.type{
+	margin-top: 20px;
+}
+.def{
+	  
+  width: 25%;
+  color: #9e9e9e;
+  font-size: 14px;
+  border: 1px solid #464646;
+  margin-bottom: 20px;
+}
+.de{
+	 width: 25%;
+  color: #9e9e9e;
+  font-size: 14px;
+  border: 1px solid #464646;
+  margin-bottom: 20px;
+  margin-left:53px;
+}
+
 		</style>				
 </head>
 <body>
@@ -103,6 +202,8 @@ input[type="date"]
 	<div class="container">	
 		  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+
+ <input type="hidden" name="total" id="totalRes">
 <?php 
 $pid=intval($_GET['pkgid']);
 $sql = "SELECT * from tbltourpackages where PackageId=:pid";
@@ -117,7 +218,11 @@ foreach($results as $result)
 {	
 	date_default_timezone_set("Asia/Kolkata");
   $date = date("d/m/Y")." ".date("h:i:sa");
+  
 	?>
+	<script>
+   document.getElementById('totalRes').value=<?php echo htmlentities($result->PackagePrice); ?>
+ </script>
 
 <form name="book" method="post">
 		<div class="selectroom_top">
@@ -148,32 +253,80 @@ foreach($results as $result)
 				<div class="clearfix"></div>
 		</div>
 		<div class="selectroom_top">
-			<h2>Travels</h2>
-			<div class="selectroom-info animated wow fadeInUp animated" data-wow-duration="1200ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp; margin-top: -70px">
-				<ul>
-				
-					<li class="spe">
-						<label class="inputLabel">Comment</label>
-						<input class="special" type="text" name="comment" required="">
-					</li>
+			<h2>Booking</h2>
+			
+        <p class="m">Fill in Your Details</p>
+ 
+
+     <div class="input city">
+  <i class="fa fa-plane"></i>
+   Departure City :
+ <select class="def" name="cities" id="ct" onchange="changestatus()" class="select">
+              <option value="" disabled selected hidden>Please Select</option>
+              <option value="Coimbatore" class="company" id="company">Coimbatore</option>
+              <option value="kerala">Kerala</option>
+              <option value="Bangalore">Bangalore</option>
+            </select>
+   <div class="tour"> 
+	   <li class="fa fa-globe"></li>
+	   Tour Type:
+  <select class="de" name="packages" id="user" onchange="changestatus()" class="select">
+              <option value="" disabled selected hidden>Select Any</option>
+              <option value="Family Package" class="company" id="company">Family package</option>
+              <option value="Couple">Couple package</option>
+              <option value="Bachelor's Package">Bachelor's Package</option>
+            </select>
+</div>
+</div>
+
+<div class="input type">
+   
+ <i class="fa fa-users"></i>
+   Select Travellers  :
+</div>
+
+<div class="mainwr">
+  <label class="ad">Adult</label>
+   <div class="wrapper1">
+    
+    <span class="minus">-</span>
+    <button name="adult" class="num" >00</button>
+    <span class="plus">+</span>
+  </div>
+  <label class="ch">Child(Age:>10)</label>
+  <div class="wrapper2">
+    
+    <span class="min">-</span>
+    <button name="child" class="number">00</button>
+    <span class="pl">+</span>
+  </div
+  
+</div>
+<div id="result">
+  <label  id="total">Total</label>
+</div>
 					<?php if($_SESSION['alogin'])
 					{?>
-						<li class="spe" align="center">
-					<a href="thankyou.php"><button name="submit2" class="btn-primary btn">Book</button></a>
-						</li>
+						<div align="center">
+					<a href="booking-form.php"><button name="submit2" class="btn-primary btn">Book</button></a></div>
+						
 						<?php } else {?>
-							<li class="sigi" align="center" style="margin-top: 1%">
-							<a href="thankyou.php" data-toggle="modal" data-target="myModal4" class="btn-primary btn" > Book</a></li>
+							 
+							<a href="thankyou.php" data-toggle="modal" data-target="#myModal4" class="btn-primary btn" > Book</a>
 							<?php } ?>
 					<div class="clearfix"></div>
-				</ul>
+			
 			</div>
 			
 		</div>
 		</form>
 <?php }} ?>
 
-
+<!-- =========== Modal ============ -->
+     
+                </div>
+            </form>
+        </div>
 	</div>
 </div>
 <!--- /selectroom ---->
@@ -212,4 +365,52 @@ if(mm<10){
 } 
 today = yyyy+'-'+mm+'-'+dd;
 aDatePicker.setAttribute("min", today);
+
+ const plus = document.querySelector(".plus"),
+    minus = document.querySelector(".minus"),
+    num = document.querySelector(".num");
+    let a = 0;
+    let count=0;
+    plus.addEventListener("click", ()=>{
+      a++;
+      a = (a < 10) ? "0" + a : a;
+      num.innerText = a;
+      count++;
+      let price=document.getElementById("totalRes").value;
+      document.querySelector("#result").innerHTML = "Total: "+(count*price);
+    });
+
+    minus.addEventListener("click", ()=>{
+      if(a > 0){
+        a--;
+        a = (a < 10) ? "0" + a : a;
+        num.innerText = a;
+        count--;
+        let price=document.getElementById("totalRes").value;
+        document.querySelector("#result").innerHTML = "Total: "+(count*price);
+      }
+    });
+    const pl = document.querySelector(".pl"),
+    min = document.querySelector(".min"),
+    number = document.querySelector(".number");
+    let b = 0;
+    pl.addEventListener("click", ()=>{
+      b++;
+      b = (b < 10) ? "0" + b : b;
+      number.innerText = b;
+      count++;
+      let price=document.getElementById("totalRes").value;
+        document.querySelector("#result").innerHTML = "Total: "+(count*price);
+    });
+
+    min.addEventListener("click", ()=>{
+      if(b > 0){
+        b--;
+        b = (b < 10) ? "0" + b : b;
+        number.innerText = b;
+        count--;
+        let price=document.getElementById("totalRes").value;
+        document.querySelector("#result").innerHTML = "Total: "+(count*price);
+      }
+    });
 </script>

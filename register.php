@@ -63,7 +63,7 @@ $Users=$_POST['users'];
 if($lastInsertId)
 {
 $_SESSION['msg']="You are Scuccessfully registered. Now you can login ";
-header('location:index.php');
+header('location:regndlog.php');
 }
 else 
 {

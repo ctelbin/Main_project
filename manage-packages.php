@@ -74,7 +74,7 @@ else{
 				</div>
 <!--heder end here-->
 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard.php">Home</a><i class="fa fa-angle-right"></i>Manage Packages</li>
+                <li class="breadcrumb-item"><a href="companyDashboard.php">Home</a><i class="fa fa-angle-right"></i>Manage Packages</li>
             </ol>
 <div class="agile-grids">	
 				<!-- tables -->
@@ -95,7 +95,7 @@ else{
 						  </tr>
 						</thead>
 						<tbody>
-<?php $sql = "SELECT * from TblTourPackages";
+<?php $sql = "SELECT * from TblTourPackages where ";
 $query = $dbh -> prepare($sql);
 //$query -> bindParam(':city', $city, PDO::PARAM_STR);
 $query->execute();
