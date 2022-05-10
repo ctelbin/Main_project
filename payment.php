@@ -1,4 +1,14 @@
 
+	<?php
+	 session_start();
+	 if (!isset($_SESSION['alogin'])) {
+	header('Location: regndlog.php');
+	}
+	error_reporting(0);
+	include('includes/config.php');
+	?>
+
+	
 	<!DOCTYPE HTML>
 <html>
 	<head>
@@ -6,6 +16,7 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		
 			<div class="header">
 				<div class="wrap">
 					<div class="header-top">
@@ -21,7 +32,7 @@
 				</div>
 				</div></div></br></br></br>
 				<div class="pay" style="border:2px solid black; margin-left: 376px;margin-right:308px ">
-					<form method="post" action="payment1.php">
+					<form method="post" action="thankyou1.phppkgid=<?php echo htmlentities($result->PackageId);?>">
                      <center><table  class="tbl" cellpadding=20px>
 							<tr>
 								<img src="images/1234.png" title="image-name" />
@@ -92,7 +103,7 @@
 
 						</table>
 						</form> 
-					<input type="submit" name="Book" onclick="chkcrd()" value="Book" id="button"></a>
+					<a href="thankyou1.php"> <input type="submit" name="Book" onclick="chkcrd()" value="Book" id="button"></a>
 				</center>
 			
 			</div>

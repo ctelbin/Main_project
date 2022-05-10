@@ -28,7 +28,7 @@ echo "<script type='text/javascript'> document.location = 'Home.php'; </script>"
 }
 if($stat==3){
     
-echo "<script type='text/javascript'> document.location = 'companyDashboard.php'; </script>";
+echo "<script type='text/javascript'> document.location = 'Home.php'; </script>";
 }
 // echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
 } else{

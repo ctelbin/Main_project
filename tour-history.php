@@ -130,7 +130,7 @@ $error="You can't cancel booking before 24 hours";
 <?php 
 
 $uemail=$_SESSION['alogin'];;
-$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
+$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.city as city,tblbooking.type as type,tblbooking.adult as adult,tblbooking.child as child,tblbooking.total as total,tblbooking.status as status,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
 $query->execute();

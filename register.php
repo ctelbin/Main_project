@@ -50,8 +50,7 @@ $Users=$_POST['users'];
             else{
                 $Email=$_POST['email'];
              $Password=md5($_POST['pass']);
-             $sql="INSERT INTO `register`(`users`, `name`, `email`, `password`,`status`) VALUES('$Users','$Fname','$Email','$Password','$status')";
-             echo $sql;     
+             $sql="INSERT INTO `register`(`users`, `name`, `email`, `password`,`status`) VALUES('$Users','$Fname','$Email','$Password','$status')";    
              $query = $dbh->prepare($sql);
              $query->bindParam(':Users',$Users,PDO::PARAM_STR);
              $query->bindParam(':Fname',$Fname,PDO::PARAM_STR);
