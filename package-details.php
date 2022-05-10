@@ -34,6 +34,7 @@ if (isset($_POST['submit2'])) {
 
     if ($lastInsertId) {
         $msg = "Booked Successfully";
+        
     } else {
         $error = "Something went wrong. Please try again";
     }
@@ -370,7 +371,7 @@ if (isset($_SESSION['alogin'])) {
                             child: child
                         },
                         success: function(data) {
-                            alert(data);
+
                             var options = {
                                 "key": "rzp_test_znHnU7ulu4TmWS",
                                 "amount": totPrice * 100,
