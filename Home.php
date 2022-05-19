@@ -110,7 +110,7 @@ include('includes/config.php');
 
 					<div class="column">
 						<div class="cardss">
-							<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage); ?>" class="img-responsive">
+							<img src="<?php echo htmlentities($result->PackageImage); ?>" class="img-responsive">
 							<p><?php echo htmlentities($result->PackageName); ?></p>
 							<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId); ?>" class="view">Details</a>
 						</div>

@@ -1,5 +1,4 @@
-<!-- <?php if($_SESSION['alogin'])
-{?>
+<!-- <?php if ($_SESSION['alogin']) { ?>
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
@@ -11,12 +10,12 @@
 		</ul>
 		<ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s"> 
 			<li class="tol">Welcome :</li>				
-			<li class="sig"><?php echo htmlentities($_SESSION['alogin']);?></li> 
+			<li class="sig"><?php echo htmlentities($_SESSION['alogin']); ?></li> 
 			<li class="sigi"><a href="logout.php" >/ Logout</a></li>
         </ul>
 		<div class="clearfix"></div>
 	</div>
-</div><?php } else {?>
+</div><?php } else { ?>
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
@@ -31,22 +30,23 @@
 		<div class="clearfix"></div>
 	</div>
 </div>
-<?php }?> -->
+<?php } ?> -->
 <!--- /top-header ---->
 <!--- header ---->
 <div class="header">
-		<a href="Home.php"><img src="images/logo.jpg" class="logo1" alt="" /></a>
-	<div class="containerrr">	
-	
-		<div class="lock fadeInDown animated" data-wow-delay=".5s"> 
-			
+	<a href="Home.php"><img src="images/logo.jpg" class="logo1" alt="" /></a>
+	<div class="containerrr">
+
+		<div class="lock fadeInDown animated" data-wow-delay=".5s">
+
 			<li><a href="#">About</a></li>
 			<li><a href="tour-history.php">Booking Details</a></li>
-								<li><a href="#">Tour Packages</a></li>
-								<li><a href="logout.php">logout</a></li>
-								  
-								          
-			<div class="clearfix"></div>	
+			<li><a href="package-list.php">Tour Packages</a></li>
+			<li><a href="Issue.php">Write a Query</a></li>
+			<li><a href="logout.php">logout</a></li>
+
+
+			<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
@@ -58,8 +58,8 @@
 	<div class="container">
 	<div class="navigation">
 			<nav class="navbar navbar-default"> -->
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<!-- <div class="navbar-header">
+<!-- Brand and toggle get grouped for better mobile display -->
+<!-- <div class="navbar-header">
 				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -67,8 +67,8 @@
 					<span class="icon-bar"></span>
 				  </button>
 				</div> -->
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<!-- <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+<!-- Collect the nav links, forms, and other content for toggling -->
+<!-- <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 					<nav class="cl-effect-1">
 						<ul class="nav navbar-nav">
 							<li><a href="index.php">Home</a></li>
@@ -87,7 +87,7 @@
 
 						</ul>
 					</nav> -->
-				<!-- </div>	
+<!-- </div>	
 			</nav>
 		</div>
 		

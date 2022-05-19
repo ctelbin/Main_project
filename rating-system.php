@@ -16,7 +16,7 @@
     <div class="container">
         <h1 class="mt-5 mb-5">Review & Rating</h1>
         <div class="card">
-            <div class="card-header">KEvent</div>
+            <div class="card-header">Travello-Tours and Travels</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4 text-center">
@@ -30,7 +30,7 @@
                             <i class="fas fa-star star-light mr-1 main_star"></i>
                             <i class="fas fa-star star-light mr-1 main_star"></i>
                         </div>
-                        <h3><span id="total_review">0</span> Review</h3>
+                        <h3><span id="total_review">0</span> Reviews</h3>
                     </div>
                     <div class="col-sm-4">
                         <p>

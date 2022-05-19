@@ -1,8 +1,13 @@
 <?php
 include('includes/config.php');
+session_start();
+$useremail = $_SESSION['alogin'];
+$pid = $_SESSION['pkid'];
 if (isset($_POST["rating_data"])) {
 
     $data = array(
+        ':pid' => $pid,
+        ':useremail' => $useremail,
         ':user_name'        =>    $_POST["user_name"],
         ':user_rating'        =>    $_POST["rating_data"],
         ':user_review'        =>    $_POST["user_review"],
@@ -10,8 +15,8 @@ if (isset($_POST["rating_data"])) {
     );
 
     $query = "INSERT INTO tblpackagerating
-	(user_name, user_rating, user_review, datetime) 
-	VALUES (:user_name, :user_rating, :user_review, :datetime)";
+	(pid,useremail,user_name, user_rating, user_review, datetime) 
+	VALUES (:pid,:useremail,:user_name, :user_rating, :user_review, :datetime)";
 
     $statement = $dbh->prepare($query);
 
@@ -32,7 +37,7 @@ if (isset($_POST["action"])) {
     $review_content = array();
 
     $query = "SELECT * FROM tblpackagerating
-	ORDER BY review_id DESC";
+	where pid = '$pid'";
 
     $result = $dbh->query($query, PDO::FETCH_ASSOC);
 

@@ -2,6 +2,7 @@
 session_start();
 $useremail = $_SESSION['alogin'];
 $pid = intval($_GET['pkgid']);
+$_SESSION['pkid'] = $_GET['pkgid'];
 error_reporting(0);
 include('includes/config.php');
 if (isset($_POST['submit2'])) {
@@ -317,7 +318,7 @@ if (isset($_SESSION['alogin'])) {
 
                                 <div class="selectroom_top">
                                     <div class="col-md-4 selectroom_left wow fadeInLeft animated" data-wow-delay=".5s">
-                                        <img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage); ?>" class="img-responsive" alt="">
+                                        <img src="<?php echo htmlentities($result->PackageImage); ?>" class="img-responsive" alt="">
                                     </div>
                                     <div class="col-md-8 selectroom_right wow fadeInRight animated" data-wow-delay=".5s">
                                         <h2><?php echo htmlentities($result->PackageName); ?></h2>
@@ -422,7 +423,7 @@ if (isset($_SESSION['alogin'])) {
             <div class="container">
                 <h1 class="mt-5 mb-5">Review & Rating</h1>
                 <div class="card">
-                    <div class="card-header">Travello</div>
+                    <div class="card-header">Travello-Tours and Travels Management System</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-4 text-center">
@@ -436,7 +437,7 @@ if (isset($_SESSION['alogin'])) {
                                     <i class="fas fa-star star-light mr-1 main_star"></i>
                                     <i class="fas fa-star star-light mr-1 main_star"></i>
                                 </div>
-                                <h3><span id="total_review">0</span> Review</h3>
+                                <h3><span id="total_review">0</span> Reviews</h3>
                             </div>
                             <div class="col-sm-4">
                                 <p>
