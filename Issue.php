@@ -1,24 +1,32 @@
 <?php
 session_start();
 error_reporting(0);
+session_start();
 include('includes/config.php');
-if (isset($_POST['submit1'])) {
-    $email = $_POST['email'];
-    $issue = $_POST['issue'];
-    $description = $_POST['description'];
-    $sql = "INSERT INTO  tblissues(UserEmail,Issue,Description) VALUES(:email,:issue,:description)";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':email', $email, PDO::PARAM_STR);
-    $query->bindParam(':issue', $issue, PDO::PARAM_STR);
-    $query->bindParam(':description', $description, PDO::PARAM_STR);
-    $query->execute();
-    $lastInsertId = $dbh->lastInsertId();
-    if ($lastInsertId) {
-        $msg = "Issue  Successfully submited";
-    } else {
-        $error = "Something went wrong. Please try again";
+if (strlen($_SESSION['alogin']) == 0) {
+    header('location:index.php');
+} else {
+    include('includes/config.php');
+    if (isset($_POST['submit1'])) {
+        $email = $_POST['email'];
+        $issue = $_POST['issue'];
+        $description = $_POST['description'];
+        $sql = "INSERT INTO tblissues(UserEmail,Issue,Description) VALUES(:email,:issue,:description)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':issue', $issue, PDO::PARAM_STR);
+        $query->bindParam(':description', $description, PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if ($lastInsertId) {
+            $msg = "Issue Successfully submited";
+        } else {
+            $error = "Something went wrong. Please try again";
+        }
     }
 }
+
+
 
 ?>
 <!DOCTYPE HTML>

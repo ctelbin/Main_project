@@ -19,9 +19,12 @@ body a {
   -ms-transition: 0.5s all;
 }
 
+.form-group{
+  margin-bottom:32px;
+}
 .error {
   position: absolute;
-  margin-top: 55px;
+  margin-top: 2px;
   color: #ec0000;
   font-family: "Gilroy_M";
   font-size: 14px;

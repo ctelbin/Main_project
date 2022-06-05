@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">Package Price</label>
 											<div class="col-sm-8 pprice">
-												<input type="text" class="form-control1" name="packageprice" id="packageprice" placeholder=" Package Price">
+												<input type="text" class="form-control1" name="packageprice" id="packageprice" maxlength="6" placeholder=" Package Price">
 												<div class="error error-hidden">
 
 												</div>
@@ -269,65 +269,107 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		</html>
 	<?php } ?>
-	<!-- 
-<script src="js/app.js"></script>
-  <script type="text/javascript">
 
-//=============Registeration Form Validation==============
-const packForm=document.querySelector("#package-form");
-const packName=document.querySelector("#packagename");
-const packType=document.querySelector("#packagetype");
-const packLocation=document.querySelector("#packagelocation");
-const packPrice=document.querySelector("#packageprice");
-const packFeature=document.querySelector("#packagefeatures");
-const packDetail=document.querySelector("#packagedetails");
+	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		// =============Registeration Form Validation==============
+		const packForm = document.querySelector("#package-form");
+		const packName = document.querySelector("#packagename");
+		const packType = document.querySelector("#packagetype");
+		const packLocation = document.querySelector("#packagelocation");
+		const packPrice = document.querySelector("#packageprice");
+		const packFeature = document.querySelector("#packagefeatures");
+		const packDetail = document.querySelector("#packagedetails");
 
-//Error Message Class
-const packNameError=document.querySelector(".pname .error");
-const packTypeError=document.querySelector(" .ptype .error");
-const packLocationError=document.querySelector(".plocation .error");
-const packPriceError=document.querySelector(".pprice .error");
-const packfeatureError=document.querySelector(".pfeature .error");
-const packDetailError=document.querySelector(".pdetail .error");
-var packNameSubmit=false;
-var packTypeSubmit=false;
-var packLocationSubmit=false;
-var packPriceSubmit=false;
-var packfeatureSubmit=false;
-var  packDeatailSubmit=false;
-
+		//Error Message Class
+		const packNameError = document.querySelector(".pname .error");
+		const packTypeError = document.querySelector(" .ptype .error");
+		const packLocationError = document.querySelector(".plocation .error");
+		const packPriceError = document.querySelector(".pprice .error");
+		const packfeatureError = document.querySelector(".pfeature .error");
+		const packDetailError = document.querySelector(".pdetail .error");
+		var packNameSubmit = false;
+		var packTypeSubmit = false;
+		var packLocationSubmit = false;
+		var packPriceSubmit = false;
+		var packfeatureSubmit = false;
+		var packDeatailSubmit = false;
 
 
 
-var packnameChk=/^[a-z A-Z]+$/;
-packName.addEventListener("input",()=>{
-    if(packName.value.match(packnameChk)){
-        packNameError.classList.add("error-hidden");
-        packNameError.classList.remove("error-visible");
-        packNameSubmit=true;
-    }else if(packName.value==""){
-        packNameError.classList.add("error-visible");
-        packNameError.classList.remove("error-hidden");
-        packNameError.innerText="Field cannot be blank";
-        packNameSubmit=false;
-    }else{
-        packNameError.classList.add("error-visible");
-        packNameError.classList.remove("error-hidden");
-        packNameError.innerText="Name should not contain numbers";
-        packNameSubmit=false;
-    }
-});
-//Email Validation
 
-const buttonCursor=document.querySelector(".btn");//To avoid poniterevent and cursor problem
-regForm.addEventListener("keyup",()=>{
-    console.log(packNameSubmit);
-    if(packNameSubmit==true && emailSubmit==true && passwordSubmit==true){
-        regSubBtn.classList.remove("disabled");
-        buttonCursor.classList.remove("cursor-disabled");
-    }else{
-        regSubBtn.classList.add("disabled");
-        buttonCursor.classList.add("cursor-disabled");
-    }
-});
-</script> -->
+		var packnameChk = /^[ A-Za-z_@./#&+-]*$/;
+		packName.addEventListener("input", () => {
+			if (packName.value.match(packnameChk)) {
+				packNameError.classList.add("error-hidden");
+				packNameError.classList.remove("error-visible");
+				packNameSubmit = true;
+			} else if (packName.value == "") {
+				packNameError.classList.add("error-visible");
+				packNameError.classList.remove("error-hidden");
+				packNameError.innerText = "Field cannot be blank";
+				packNameSubmit = false;
+			} else {
+				packNameError.classList.add("error-visible");
+				packNameError.classList.remove("error-hidden");
+				packNameError.innerText = "Package Name should not contain numbers";
+				packNameSubmit = false;
+			}
+		});
+
+		//Package Type Validation
+
+		var packtypeChk = /[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
+		packType.addEventListener("input", () => {
+			if (packType.value.match(packtypeChk)) {
+				packTypeError.classList.add("error-hidden");
+				packTypeError.classList.remove("error-visible");
+				packTypeSubmit = true;
+			} else if (packType.value == "") {
+				packTypeError.classList.add("error-visible");
+				packTypeError.classList.remove("error-hidden");
+				packTypeError.innerText = "Field cannot be blank";
+				packTypeSubmit = false;
+			} else {
+				packTypeError.classList.add("error-visible");
+				packTypeError.classList.remove("error-hidden");
+				packTypeError.innerText = "Package Type should not contain special Characters";
+				packTypeSubmit = false;
+			}
+		});
+		//Package Price Validation
+		var packpriceChk = /^([0-9_\-]{1,6})+$/;
+		packPrice.addEventListener("input", () => {
+			if (packPrice.value.match(packpriceChk)) {
+				packPriceError.classList.add("error-hidden");
+				packPriceError.classList.remove("error-visible");
+				packPriceSubmit = true;
+			} else if (packPrice.value == "") {
+				packPriceError.classList.add("error-visible");
+				packPriceError.classList.remove("error-hidden");
+				packPriceError.innerText = "Field cannot be blank";
+				packPriceSubmit = false;
+			} else {
+				packPriceError.classList.add("error-visible");
+				packPriceError.classList.remove("error-hidden");
+				packPriceError.innerText = "Package  should not contain Alphabets and Special characters";
+				packPriceSubmit = false;
+			}
+		});
+
+
+
+		//Email Validation
+
+		// const buttonCursor = document.querySelector(".btn"); //To avoid poniterevent and cursor problem
+		// regForm.addEventListener("keyup", () => {
+		// 	console.log(packNameSubmit);
+		// 	if (packNameSubmit == true && packTypeSubmit == true && packPriSubmit == true) {
+		// 		regSubBtn.classList.remove("disabled");
+		// 		buttonCursor.classList.remove("cursor-disabled");
+		// 	} else {
+		// 		regSubBtn.classList.add("disabled");
+		// 		buttonCursor.classList.add("cursor-disabled");
+		// 	}
+		// });
+	</script> -->

@@ -218,7 +218,6 @@ include('includes/config.php');
     });
 
 
-    //======== Tour company textbox Check =====
 
 
 
