@@ -7,14 +7,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
 	$imgid = intval($_GET['imgid']);
 	if (isset($_POST['submit'])) {
-
-		$pimage = $_FILES["packageimage"]["name"];
-		move_uploaded_file($_FILES["packageimage"]["tmp_name"], "pacakgeimages/" . $_FILES["packageimage"]["name"]);
-		$sql = "update TblTourPackages set PackageImage=:pimage where PackageId=:imgid";
+		$upload_dir = './packageimage/';
+		$file_tmpname = $_FILES['packageimage']['tmp_name'];
+		$file_name = $_FILES['packageimage']['name'];
+		$file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+		$filepath = $upload_dir . time() . "." . $file_ext;
+		move_uploaded_file($file_tmpname, $filepath);
+		$sql = "update TblTourPackages set PackageImage='$filepath' where PackageId='$imgid'";
 		$query = $dbh->prepare($sql);
-
+		$query->bindParam(':filepath', $filepath, PDO::PARAM_STR);
 		$query->bindParam(':imgid', $imgid, PDO::PARAM_STR);
-		$query->bindParam(':pimage', $pimage, PDO::PARAM_STR);
 		$query->execute();
 		$msg = "Package Created Successfully";
 	}
@@ -105,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="form-group">
 												<label for="focusedinput" class="col-sm-2 control-label"> Package Image </label>
 												<div class="col-sm-8">
-													<img src="pacakgeimages/<?php echo htmlentities($result->PackageImage); ?>" width="200">
+													<img src="<?php echo htmlentities($result->PackageImage); ?>" width="200">
 												</div>
 											</div>
 

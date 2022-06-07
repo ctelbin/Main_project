@@ -1,13 +1,15 @@
 <?php
 session_start();
 error_reporting(0);
-$cname = $_GET['cname'];
 include('includes/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
 	header('location:index.php');
 } else {
-	$pid = intval($_GET['pid']);
+
+
 	if (isset($_POST['submit'])) {
+		$pidd = intval($_GET['pid']);
+		$cname = $_GET['uname'];
 		$pname = $_POST['packagename'];
 		$ptype = $_POST['packagetype'];
 		$plocation = $_POST['packagelocation'];
@@ -15,7 +17,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$pfeatures = $_POST['packagefeatures'];
 		$pdetails = $_POST['packagedetails'];
 		$pimage = $_FILES["packageimage"]["name"];
-		$sql = "update TblTourPackages set PackageName=:pname,PackageType=:ptype,PackageLocation=:plocation,PackagePrice=:pprice,PackageFetures=:pfeatures,PackageDetails=:pdetails where PackageId=:pid & compname='$cname'";
+		$sql = "update tbltourPackages set PackageName='$pname',PackageType='$ptype',PackageLocation='$plocation',PackagePrice='$pprice',PackageFetures='$pfeatures',PackageDetails='$pdetails' where PackageId='$pidd' and compname='$cname'";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':pname', $pname, PDO::PARAM_STR);
 		$query->bindParam(':ptype', $ptype, PDO::PARAM_STR);
@@ -23,7 +25,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':pprice', $pprice, PDO::PARAM_STR);
 		$query->bindParam(':pfeatures', $pfeatures, PDO::PARAM_STR);
 		$query->bindParam(':pdetails', $pdetails, PDO::PARAM_STR);
-		$query->bindParam(':pid', $pid, PDO::PARAM_STR);
+		$query->bindParam(':pid', $pidd, PDO::PARAM_STR);
 		$query->execute();
 		$msg = "Package Updated Successfully";
 	}
@@ -157,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="form-group">
 												<label for="focusedinput" class="col-sm-2 control-label">Package Image</label>
 												<div class="col-sm-8">
-													<img src="pacakgeimages/<?php echo htmlentities($result->PackageImage); ?>" width="200">&nbsp;&nbsp;&nbsp;<a href="change-image.php?imgid=<?php echo htmlentities($result->PackageId); ?>">Change Image</a>
+													<img src="<?php echo htmlentities($result->PackageImage); ?>" width="200">&nbsp;&nbsp;&nbsp;<a href="change-image.php?imgid=<?php echo htmlentities($result->PackageId); ?>">Change Image</a>
 												</div>
 											</div>
 
